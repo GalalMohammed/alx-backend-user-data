@@ -5,7 +5,7 @@ Module for Basic auth.
 """
 import base64
 import binascii
-from Typing import TypeVar
+from typing import TypeVar
 from .auth import Auth
 from models.user import User
 
