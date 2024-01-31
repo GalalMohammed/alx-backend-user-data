@@ -12,8 +12,12 @@ class Auth():
     """
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """ # TODO
+        """ Define which routes don't need authentication.
         """
+        if path and path[-1] != '/':
+            path += '/'
+        if not (path and excluded_paths and path in excluded_paths):
+            return True
         return False
 
     def authorization_header(self, request=None) -> str:
