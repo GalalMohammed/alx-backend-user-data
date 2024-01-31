@@ -3,8 +3,8 @@
 """
 Module to manage the API authentication.
 """
+from typing import List, TypeVar
 from flask import request
-from typing import List
 
 
 class Auth():
