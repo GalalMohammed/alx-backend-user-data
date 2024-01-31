@@ -25,8 +25,8 @@ def requests_filter() -> object:
     """
     if auth:
         if not auth.require_auth(request.path, ['/api/v1/status/',
-                                            '/api/v1/unauthorized/',
-                                            '/api/v1/forbidden/']):
+                                                '/api/v1/unauthorized/',
+                                                '/api/v1/forbidden/']):
             return
         if auth.authorization_header(request) is None:
             abort(401)
