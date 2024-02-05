@@ -26,7 +26,7 @@ class Auth:
     def register_user(self, email: str, password: str) -> User:
         """Register user.
         """
-        hashed_password = _hashed_password(password)
+        hashed_password = _hash_password(password)
         try:
             user = self._db.find_user_by(email=email, hashed_password=hashed_password)
             raise ValueError(f"User {user.email} already exists")
