@@ -41,5 +41,5 @@ class Auth:
                 return True
             else:
                 return False
-        except:
+        except NoResultFound:
             return False
