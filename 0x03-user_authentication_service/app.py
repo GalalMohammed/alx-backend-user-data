@@ -2,7 +2,7 @@
 """
 This module sets up a basic flask app.
 """
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, abort
 from auth import Auth
 
 AUTH = Auth()
@@ -27,6 +27,20 @@ def users() -> str:
         return jsonify({"email": user.email, "message": "user created"})
     except ValueError:
         return jsonify({"message": "email already registered"}), 400
+
+
+@app.route('/sessions', methods=['POST'], strict_slashes=False)
+def login() -> str:
+    """ POST /sessions
+    """
+    if AUTH.valid_login(request.form.get('email'),
+                        request.form.get('password')):
+        out = jsonify({"email": request.form.get('email'),
+                       "message": "logged in"})
+        out.set_cookie("session_id",
+                       AUTH.create_session(request.form.get('email')))
+        return out
+    abort(401)
 
 
 if __name__ == "__main__":
