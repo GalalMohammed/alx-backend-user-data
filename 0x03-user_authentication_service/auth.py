@@ -4,10 +4,11 @@
 This module defines _hash_password function.
 """
 
+import uuid
 import bcrypt
+from sqlalchemy.orm.exc import NoResultFound
 from db import DB
 from user import User
-from sqlalchemy.orm.exc import NoResultFound
 
 
 def _hash_password(password: str) -> bytes:
@@ -39,7 +40,11 @@ class Auth:
             user = self._db.find_user_by(email=email)
             if bcrypt.checkpw(password.encode(), user.hashed_password):
                 return True
-            else:
-                return False
+            return False
         except NoResultFound:
             return False
+
+    def _generate_uuid() -> str:
+        """Get a string representation of a new UUID
+        """
+        return str(uuid.uuid4())
