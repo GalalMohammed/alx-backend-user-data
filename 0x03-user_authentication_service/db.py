@@ -3,9 +3,9 @@
 """DB module
 """
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
+from sqlalchemy.orm.exc import NoResultFound
 
 from user import Base, User
 
@@ -37,4 +37,12 @@ class DB:
         row = User(email=email, hashed_password=hashed_password)
         self._session.add(row)
         self._session.commit()
+        return row
+
+    def find_user_by(self, **kwargs: object) -> User:
+        """Find a user in the database based on keyword arguments.
+        """
+        row = self._session.query(User).filter_by(**kwargs).first()
+        if not row:
+            raise NoResultFound
         return row
