@@ -2,6 +2,9 @@
 
 Simple HTTP API for playing with `User` model.
 
+## Resource
+
+[Flask Cookie](https://flask.palletsprojects.com/en/stable/quickstart/)
 
 ## Files
 
