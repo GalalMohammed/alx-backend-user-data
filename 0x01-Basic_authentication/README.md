@@ -2,6 +2,14 @@
 
 Simple HTTP API for playing with `User` model.
 
+## Resources
+
+[Flask-HTTPAuth](https://flask-httpauth.readthedocs.io/en/latest/)
+
+[REST API Authentication Mechanisms](https://www.youtube.com/watch?v=501dpx2IjGY)
+
+[Flask](https://palletsprojects.com/projects/flask/)
+
 
 ## Files
 
